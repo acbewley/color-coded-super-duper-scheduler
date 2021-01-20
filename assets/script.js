@@ -6,10 +6,11 @@ function clock() {
 };
 //sets once second interval update to the clock
 setInterval(clock, 1000);
-//resets task list at midnight
-if (now === 00) {
-    localStorage.clear("tasks")
-}
+//logic for clear button, emptys tasks array and reloads the page
+$("#clear-button").on("click", function() {
+    localStorage.clear()
+    location.reload()
+})
 //color codes rows based on current time
 function rowColor() {
     for (i = 0; i < 10; i++) {
@@ -35,7 +36,7 @@ function initTasks() {
         tasks = storedTasks
         for (i = 0; i < tasks.length; i++) {
             if (tasks[i] === null) {
-                
+
             } else {
                 $("#comment" + i).text(tasks[i])
             }
