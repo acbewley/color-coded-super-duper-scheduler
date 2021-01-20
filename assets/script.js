@@ -1,15 +1,16 @@
 var now = moment().format("HH");
 var tasks = []
+//creates clock and displays it to the page
 function clock() {
     $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
 };
-
+//sets once second interval update to the clock
 setInterval(clock, 1000);
-
+//resets task list at midnight
 if (now === 00) {
     localStorage.clear("tasks")
 }
-
+//color codes rows based on current time
 function rowColor() {
     for (i = 0; i < 10; i++) {
         var rowNumber = parseInt($("#row" + i).text());
@@ -27,7 +28,7 @@ function rowColor() {
         };
     };
 };
-
+//displayed stored tasks to the page on load
 function initTasks() {
     var storedTasks = JSON.parse(localStorage.getItem("tasks"))
     if (storedTasks != null) {
@@ -41,7 +42,7 @@ function initTasks() {
         }
     }
 }
-
+//various event listeners to save input and write to page
 $("#button9").on("click", function () {
     var task9 = $("#input9").val()
     if (task9 === "") {
